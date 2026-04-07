@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MGT4203 - Interactive Q&A</title>
+    <style>
+        /* CSS: Styling and Responsiveness */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #eceff1;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Responsive Grid for 11 Buttons */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 15px 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            background-color: #34495e;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background-color: #1abc9c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Dynamic Answer Section */
+        .answer-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-top: 5px solid #1abc9c;
+            min-height: 200px;
+            transition: opacity 0.4s ease;
+        }
+
+        .answer-box h2 {
+            margin-top: 0;
+            color: #1abc9c;
+            font-size: 1.5rem;
+        }
+
+        .answer-box p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .button-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MGT4203 Question Portal</h1>
+        <p>Click any button below to reveal the answer</p>
+    </header>
+
+    <div class="container">
+        <div class="button-grid">
+            <button onclick="handleDisplay(1)">what is organization?</button>
+            <button onclick="handleDisplay(2)">What is management?</button>
+            <button onclick="handleDisplay(3)">Organization and Management Development</button>
+            <button onclick="handleDisplay(4)">Five Stems of OD Practices (Foundation of OD)</button>
+            <button onclick="handleDisplay(5)">Values and Assumptions of Organization Development</button>
+            <button onclick="handleDisplay(6)">Advantages of Organization Development </button>
+            <button onclick="handleDisplay(7)">Eight Steps of planned Change</button>
+            <button onclick="handleDisplay(8)">Steps in Action Research Model</button>
+            <button onclick="handleDisplay(9)">Key targets of OD interventions</button>
+            <button onclick="handleDisplay(10)">ten principles to guide the process consultant’s actions</button>
+            
+        </div>
+
+        <div id="display-area" class="answer-box">
+            <h2 id="q-title">Welcome</h2>
+            <p id="a-content">Select a question from the grid above to start reviewing the course material for MGT4203.</p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript: Data and Logic
+        const contentData = {
+            1: { title: "Topic: what is organization?", text: "an organization is a structured social entity where people work together to achieve a specific set of goals" },
+            2: { title: "Topic: What is management?", text: "Management is the process of coordinating and overseeing work activities so that they are completed efficiently and effectively with and through other people." },
+            3: { title: "Topic: Organization and Management Development", text: "Organization development is an organizational improvement strategy. The term Organization Development (OD) may be defined as a technique for bringing change in the entire organization. According to Cummings and Worly - Organization Development is a systematic application of applied behavioral science knowledge to the planned development and reinforcement of organizational strategies, structures, and processes for improving an organization's effectivenessAccording to Warren Bennis - Organization development is a response to change, a complex educational strategy intended to change the beliefs, attitudes and structure of organization so that they can better adapt to new technologies, markets and challenges." },
+            4: { title: "Topic: Five Stems of OD Practices (Foundation of OD)", text: "1. Laboratory Training ,2. Action Research / Survey Feedback ,3. Normative Approaches (Participative Management),4. Quality of Work Life (QWL),5. Strategic Change (Current Practice)" },
+            5: { title: "Topic: Values and Assumptions of Organization Development", text: "Core Values:1.•	Respect for individuals 2.•	Trust and openness 3.•	Participation and involvement 4.•	Collaboration and teamwork 5.•	Continuous learning and development//Assumptions: •	People want to grow and contribute•	Employees are capable of self-direction•Problems are best solved collectively•	Organizations are open systems interacting with the environment" },
+            6: { title: "Topic: Advantages of Organization Development", text: "1.Increased horizontal and vertical communication 2.Employee Development 3.Goods & Service Enhancement 4.Increased Business Success 5.Continuous Improvement " },
+            7: { title: "Topic: Eight Steps of Planned Change", text: "•	Step-1: Identify the need for change •	Step-2: Develop goals of change •	Step-3: Change agent •	Step-4: Analyze of the current situation •	Step-5: Select the implementation method •	Step-6: Develop a plan •	Step-7: Implement the selected plan •	Step-8: Follow-up and Evaluation" },
+            8: { title: "Topic: Steps in Action Research Model", text: "•	Step-1: Identify the problem  Step-2: Consultation with a behavioral scientist Step-3: Data gathering & preliminary diagnosis  Step-4: Feedback to Client  Step-5: Joint diagnosis Step-6: Joint action planning  Step-7: Action  Step-8: Data gathering after action " },
+            9: { title: "Topic: Key targets of OD interventions", text: "1.	Strategic issues  2.	Technological and structural issues.   3.	Human Resources Management issues.  4.	 Human process issues. " },
+            10: { title: "Topic: Ten Principles to Guide the Process Consultant’s Actions", text: "1. Always try to be helpful  2. Always stay in touch with the current reality  3. Access your ignorance  4. Everything you do is an intervention  5. The client owns the problem and the solution.  6. Go with the flow.  7. Timing is crucial.  8. Be constructively opportunistic with confronted interventions.   9. Everything is information; errors will always occur and are the prime source for learning  10. When in doubt, share the problem." },
+            
+        };
+
+        function handleDisplay(id) {
+            const displayArea = document.getElementById('display-area');
+            const title = document.getElementById('q-title');
+            const content = document.getElementById('a-content');
+
+            // Simple animation trigger
+            displayArea.style.opacity = '0';
+
+            setTimeout(() => {
+                title.innerText = contentData[id].title;
+                content.innerText = contentData[id].text;
+                displayArea.style.opacity = '1';
+            }, 200);
+        }
+    </script>
+
+</body>
+</html>
